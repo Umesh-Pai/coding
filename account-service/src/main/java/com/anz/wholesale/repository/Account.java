@@ -6,6 +6,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.Type;
 
@@ -14,10 +15,15 @@ public class Account {
 	
 	public Account() {}
 	
+	@JsonIgnore
 	@Id
+	@Column(name="Account_Id")
+	private Long accountId;
+
 	@Column(name="Account_Number")
 	private Long accountNumber;
 	
+	@JsonIgnore
 	@Column(name="User_ID")
 	private String userId;
 	
@@ -38,6 +44,14 @@ public class Account {
 	@Type(type="date")
 	//@Temporal(TemporalType.DATE)
 	private Date balanceDate;
+	
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	/*public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}*/
 
 	public Long getAccountNumber() {
 		return accountNumber;
